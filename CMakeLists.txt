@@ -1,5 +1,5 @@
 # © Copyright 2010 - 2016 BlackTopp Studios Inc.
-# This file is part of The Mezzanine Engine.
+# This file is part of ForYourFriends.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -37,11 +37,49 @@
 #   Joseph Toppi - toppij@gmail.com
 #   John Blackwood - makoenergy02@gmail.com
 
-cmake_minimum_required (VERSION 2.8)
-project (ForkYourFriends)
+####################################################################################################
+cmake_minimum_required(VERSION 2.8)
+project(ForkYourFriends CXX)
+message(STATUS "${PROJECT_NAME} - Starting Configuration.")
 
-message (STATUS "${PROJECT_NAME} - Begin")
+##########################################################################|#########################
+set(JagatiChecksum "96252daabd7b82f6e8b1a667246ba252a462e604b055ddf99e5157\
+7f7fb77a0ca5a8c7da7ff7bd209efde2b86919cb2130ed657235d00208a53f0646e0e4f5ba")
+file(DOWNLOAD
+    "https://raw.githubusercontent.com/BlackToppStudios/Jagati/master/Jagati.cmake"
+    "${${PROJECT_NAME}_BINARY_DIR}/Jagati.cmake"
+    EXPECTED_HASH SHA512=${JagatiChecksum}
+)
+include("${${PROJECT_NAME}_BINARY_DIR}/Jagati.cmake")
 
+StandardJagatiSetup()
 
-message (STATUS "${PROJECT_NAME} - End")
+####################################################################################################
+message(STATUS "Determining Source Files.")
 
+set(HeaderFiles
+    "${ForkYourFriendsIncludeDir}main.h"
+)
+ShowList("Header Files:" "\t" "${HeaderFiles}")
+
+set(SourceFiles
+    "${ForkYourFriendsSourceDir}main.cpp"
+
+)
+ShowList("Source Files:" "\t" "${SourceFiles}")
+
+####################################################################################################
+# Set up Include Directories
+
+include_directories(
+    ${ForkYourFriendsIncludeDir}
+)
+
+####################################################################################################
+# Define executable 
+
+add_executable(${PROJECT_NAME} ${HeaderFiles} ${SourceFiles})
+#target_link_libraries(${PROJECT_NAME}_Tester ${StaticFoundationLib})
+
+####################################################################################################
+message(STATUS "${PROJECT_NAME} - Ending Configuration.")
