@@ -59,11 +59,13 @@ message(STATUS "Determining Source Files.")
 
 set(HeaderFiles
     "${ForkYourFriendsIncludeDir}main.h"
+    "${ForkYourFriendsIncludeDir}forklift.h"
 )
 ShowList("Header Files:" "\t" "${HeaderFiles}")
 
 set(SourceFiles
     "${ForkYourFriendsSourceDir}main.cpp"
+    "${ForkYourFriendsSourceDir}forklift.cpp"
 
 )
 ShowList("Source Files:" "\t" "${SourceFiles}")
