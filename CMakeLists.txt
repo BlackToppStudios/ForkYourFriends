@@ -96,4 +96,15 @@ add_executable(${PROJECT_NAME} ${HeaderFiles} ${SourceFiles})
 target_link_libraries(${PROJECT_NAME} ${MEZZ_Mezzanine_Library_Binary})
 
 ####################################################################################################
+# A Project to do nothing but get All the Source files visible in IDEs
+add_custom_target(
+    ${PROJECT_NAME}_IDE_Visibility
+    DEPENDS ${PROJECT_NAME}
+    SOURCES ${HeaderFiles}
+            ${SourceFiles}
+            README.md
+            LICENSE.txt
+)
+
+
 message(STATUS "${PROJECT_NAME} - Ending Configuration.")
