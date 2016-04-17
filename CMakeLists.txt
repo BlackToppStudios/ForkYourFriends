@@ -71,17 +71,29 @@ set(SourceFiles
 ShowList("Source Files:" "\t" "${SourceFiles}")
 
 ####################################################################################################
+# Mezzanine finding options
+
+set(MEZZ_Mezzanine_Library_Binary "" CACHE FILEPATH
+    "The .DLL, .SO, .A or other binary that contains the Mezzanine.")
+set(MEZZ_Library_Source "" CACHE PATH
+    "The Root folder of the Mezzanine Source")
+set(ActualSourceDir "${MEZZ_Library_Source}/Mezzanine/src")
+
+
+####################################################################################################
 # Set up Include Directories
 
 include_directories(
     ${ForkYourFriendsIncludeDir}
+    ${ActualSourceDir}
 )
 
 ####################################################################################################
-# Define executable 
+# Define executable
 
 add_executable(${PROJECT_NAME} ${HeaderFiles} ${SourceFiles})
 #target_link_libraries(${PROJECT_NAME}_Tester ${StaticFoundationLib})
+target_link_libraries(${PROJECT_NAME} ${MEZZ_Mezzanine_Library_Binary})
 
 ####################################################################################################
 message(STATUS "${PROJECT_NAME} - Ending Configuration.")

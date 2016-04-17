@@ -39,10 +39,15 @@
 */
 
 #include <cstdlib>
+#include <iostream>
 
 #include "main.h"
+#include "vector3.h"
+
+using namespace Mezzanine;
 
 int main(int ArgCount, char** ArgVars)
 {
+    std::cout << Vector3(1,2,3) << std::endl;
     return EXIT_SUCCESS;
 }
