@@ -1,5 +1,5 @@
 # ForkYourFriends
-A small demonstration game using the art of Zip Delong and the Mezzanine Engine.
+A small demonstration game using the art of Zipporah De Long and the Mezzanine Engine.
 
 The game design document for this is located at: 
 
