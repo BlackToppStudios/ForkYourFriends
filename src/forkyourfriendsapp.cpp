@@ -38,21 +38,74 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#include "main.h"
 #include "forkyourfriendsapp.h"
+#include "transitions.h"
+#include "forklift.h"
 
-using namespace Mezzanine;
-
-int main(int ArgCount, char** ArgVars)
+ForkYourFriendsApp::ForkYourFriendsApp() :
+    TheEntresol(NULL),
+    TheWorld(NULL),
+    PlayerOne(NULL),
+    PlayerTwo(NULL)
 {
-    // Temporary Hack
-    #ifdef MEZZ_MACOSX
-	String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(ArgCount,ArgVars);
-	Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
-    #endif
+    // State Setup
+    GameState.AddState("Init");
+    GameState.AddState("Menu");
+    GameState.AddState("Game");
+    GameState.AddTransition("Init","Menu",new InitToMenuTransitionAction());
+    GameState.AddTransition("Menu","Game",new MenuToGameTransitionAction());
+    GameState.AddTransition("Game","Game",new GameToGameTransitionAction());
+    GameState.AddTransition("Game","Menu",new GameToMenuTransitionAction());
+    GameState.ChangeState("Init");
 
-    ForkYourFriendsApp ForkingApp;
-    ForkingApp.Initialize();
-    ForkingApp.CreatePlayerlessScene();
-    return ForkingApp.GetForkin();
+    // Types Setup
+    this->RegisterTypes();
+
+    // Entresol Setup
+    this->TheEntresol = new Entresol("Data/",Resource::AT_FileSystem);
+    this->CreateWorld();
+}
+
+ForkYourFriendsApp::~ForkYourFriendsApp()
+{
+    delete this->TheEntresol;
+}
+
+void ForkYourFriendsApp::RegisterTypes()
+{
+
+}
+
+void ForkYourFriendsApp::CreateLoadingScreen()
+{
+
+}
+
+void ForkYourFriendsApp::CreateWorld()
+{
+    Physics::ManagerConstructionInfo Info;
+    Info.PhysicsFlags = Physics::ManagerConstructionInfo::PCF_LimitlessWorld | Physics::ManagerConstructionInfo::PCF_Multithreaded;
+
+    this->TheWorld = this->TheEntresol->CreateWorld("ForkingWorld",Info,"DefaultSceneManager");
+}
+
+void ForkYourFriendsApp::MakeGUI()
+{
+
+}
+
+void ForkYourFriendsApp::Initialize()
+{
+    this->TheEntresol->Initialize(false);
+    this->TheWorld->Initialize();
+}
+
+void ForkYourFriendsApp::CreatePlayerlessScene()
+{
+
+}
+
+int ForkYourFriendsApp::GetForkin()
+{
+
 }

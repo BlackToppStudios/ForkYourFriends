@@ -60,12 +60,16 @@ message(STATUS "Determining Source Files.")
 set(HeaderFiles
     "${ForkYourFriendsIncludeDir}main.h"
     "${ForkYourFriendsIncludeDir}forklift.h"
+    "${ForkYourFriendsIncludeDir}forkyourfriendsapp.h"
+    "${ForkYourFriendsIncludeDir}transitions.h"
 )
 ShowList("Header Files:" "\t" "${HeaderFiles}")
 
 set(SourceFiles
     "${ForkYourFriendsSourceDir}main.cpp"
     "${ForkYourFriendsSourceDir}forklift.cpp"
+    "${ForkYourFriendsSourceDir}forkyourfriendsapp.cpp"
+    "${ForkYourFriendsSourceDir}transitions.cpp"
 
 )
 ShowList("Source Files:" "\t" "${SourceFiles}")

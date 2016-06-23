@@ -37,22 +37,63 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef ForkYourFriends_transitions_h
+#define ForkYourFriends_transitions_h
 
-#include "main.h"
-#include "forkyourfriendsapp.h"
+#include <mezzanine.h>
 
 using namespace Mezzanine;
 
-int main(int ArgCount, char** ArgVars)
+///////////////////////////////////////////////////////////////////////////////
+/// @brief A state transition for moving from having an initialized app to loading the menu.
+///////////////////////////////////////
+class InitToMenuTransitionAction : public StateTransitionAction
 {
-    // Temporary Hack
-    #ifdef MEZZ_MACOSX
-	String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(ArgCount,ArgVars);
-	Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
-    #endif
+protected:
+public:
+    /// @brief Class constructor.
+    InitToMenuTransition();
+    /// @brief Class destructor.
+    ~InitToMenuTransition();
+};//InitToMenuTransition
 
-    ForkYourFriendsApp ForkingApp;
-    ForkingApp.Initialize();
-    ForkingApp.CreatePlayerlessScene();
-    return ForkingApp.GetForkin();
-}
+///////////////////////////////////////////////////////////////////////////////
+/// @brief A state transition for loading the gameplay from the menu.
+///////////////////////////////////////
+class MenuToGameTransitionAction : public StateTransitionAction
+{
+protected:
+public:
+    /// @brief Class constructor.
+    MenuToGameTransition());
+    /// @brief Class destructor.
+    ~MenuToGameTransition();
+};//MenuToGameTransition
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief A state transition for reloading the gameplay level.
+///////////////////////////////////////
+class GameToGameTransitionAction : public StateTransitionAction
+{
+protected:
+public:
+    /// @brief Class constructor.
+    GameToGameTransition();
+    /// @brief Class destructor.
+    ~GameToGameTransition();
+};//GameToGameTransition
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief A state transition for going back to the menu after a match has completed or been quit.
+///////////////////////////////////////
+class GameToMenuTransitionAction : public StateTransitionAction
+{
+protected:
+public:
+    /// @brief Class constructor.
+    GameToMenuTransition();
+    /// @brief Class destructor.
+    ~GameToMenuTransition();
+};//GameToMenuTransition
+
+#endif

@@ -37,11 +37,233 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef ForkYourFriends_forklift_h
-#define ForkYourFriends_forklift_h
+#ifndef ForkYourFriends_forklift_cpp
+#define ForkYourFriends_forklift_cpp
 
 #include "forklift.h"
 
+#include "Graphics/entityproxy.h"
 
+#include "Physics/rigidproxy.h"
+#include "Physics/hingeconstraint.h"
+#include "Physics/hinge2constraint.h"
+#include "Physics/sliderconstraint.h"
+
+Forklift::Forklift(World* TheWorld) :
+    Debris(TheWorld)
+    { this->CreateForklift(); }
+
+Forklift::Forklift(const String& Name, World* TheWorld) :
+    Debris(Name,TheWorld)
+    { this->CreateForklift(); }
+
+Forklift::Forklift(const XML::Node& SelfRoot, World* TheWorld) :
+    Debris(TheWorld)
+    { this->ProtoDeSerialize(SelfRoot); }
+
+Forklift::~Forklift()
+    { this->DestroyForklift(); }
+
+void Forklift::CreateForklift()
+{
+
+}
+
+void Forklift::DestroyForklift()
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Member Access
+
+const ForkliftChassis& Forklift::GetChassis() const
+    { return this->Chassis; }
+
+const ForkliftSteering& Forklift::GetSteering() const
+    { return this->Steering; }
+
+const ForkliftLift& Forklift::GetLift() const
+    { return this->Lift; }
+
+const ForkliftWheel& Forklift::GetWheel(const Whole Index) const
+    { return this->Wheels[Index]; }
+
+///////////////////////////////////////////////////////////////////////////////
+// Utility and Configuration
+
+WorldObjectType Forklift::GetType() const
+{
+    return Mezzanine::WO_VehiclePlaceHolder1;
+}
+
+Boole Forklift::IsInWorld() const
+{
+    return false;
+}
+
+Boole Forklift::IsStatic() const
+    { return this->Chassis.PhysicalChassis->IsStatic(); }
+
+Boole Forklift::IsKinematic() const
+    { return this->Chassis.PhysicalChassis->IsKinematic(); }
+
+void Forklift::GetProxies(ProxyContainer& Proxies)
+{
+
+}
+
+void Forklift::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Working with the World
+
+void Forklift::AddToWorld()
+{
+
+}
+
+void Forklift::RemoveFromWorld()
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Transform Methods
+
+void Forklift::SetLocation(const Vector3& Loc)
+{
+
+}
+
+void Forklift::SetLocation(const Real X, const Real Y, const Real Z)
+{
+
+}
+
+Vector3 Forklift::GetLocation() const
+{
+    return Vector3(1,1,1);
+}
+
+void Forklift::SetOrientation(const Quaternion& Ori)
+{
+
+}
+
+void Forklift::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
+{
+
+}
+
+Quaternion Forklift::GetOrientation() const
+{
+    return Quaternion(0,0,0,1);
+}
+
+void Forklift::SetScale(const Vector3& Sc)
+{
+
+}
+
+void Forklift::SetScale(const Real X, const Real Y, const Real Z)
+{
+
+}
+
+Vector3 Forklift::GetScale() const
+{
+    return Vector3(1,1,1);
+}
+
+void Forklift::Translate(const Vector3& Trans)
+{
+
+}
+
+void Forklift::Translate(const Real X, const Real Y, const Real Z)
+{
+
+}
+
+void Forklift::Yaw(const Real Angle)
+{
+
+}
+
+void Forklift::Pitch(const Real Angle)
+{
+
+}
+
+void Forklift::Roll(const Real Angle)
+{
+
+}
+
+void Forklift::Rotate(const Vector3& Axis, const Real Angle)
+{
+
+}
+
+void Forklift::Rotate(const Quaternion& Rotation)
+{
+
+}
+
+void Forklift::Scale(const Vector3& Scale)
+{
+
+}
+
+void Forklift::Scale(const Real X, const Real Y, const Real Z)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Serialization
+
+void Forklift::ProtoSerializeProperties(XML::Node& SelfRoot) const
+{
+
+}
+
+void Forklift::ProtoSerializeProxies(XML::Node& SelfRoot) const
+{
+
+}
+
+void Forklift::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+{
+
+}
+
+void Forklift::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
+{
+
+}
+
+String Forklift::GetDerivedSerializableName() const
+    { return Forklift::GetSerializableName(); }
+
+String Forklift::GetSerializableName()
+    { return "Forklift"; }
+
+///////////////////////////////////////////////////////////////////////////////
+// Internal Methods
+
+void Forklift::_Update()
+{
+
+}
+
+void Forklift::_NotifyProxyDestroyed(WorldProxy* ToBeDestroyed)
+{
+
+}
 
 #endif

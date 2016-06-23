@@ -37,22 +37,52 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef ForkYourFriends_app_h
+#define ForkYourFriends_app_h
 
-#include "main.h"
-#include "forkyourfriendsapp.h"
+#include <mezzanine.h>
 
 using namespace Mezzanine;
 
-int main(int ArgCount, char** ArgVars)
+class Player;
+///////////////////////////////////////////////////////////////////////////////
+/// @brief The root class for Fork Your Friends.
+///////////////////////////////////////
+class ForkYourFriendsApp
 {
-    // Temporary Hack
-    #ifdef MEZZ_MACOSX
-	String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(ArgCount,ArgVars);
-	Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
-    #endif
+protected:
+    /// @brief The state machine for the various game states.
+    StateMachine GameState;
+    /// @brief A pointer to the root engine object simulating the game.
+    Entresol* TheEntresol;
+    /// @brief A pointer to the game world.
+    World* TheWorld;
+    /// @brief A pointer to the "first" player.
+    Player* PlayerOne;
+    /// @brief A pointer to the "second" player.
+    Player* PlayerTwo;
 
-    ForkYourFriendsApp ForkingApp;
-    ForkingApp.Initialize();
-    ForkingApp.CreatePlayerlessScene();
-    return ForkingApp.GetForkin();
-}
+    /// @brief Registers all custom game factories with the engine.
+    void RegisterTypes();
+    /// @brief Sets up the loading screen for the game.
+    void CreateLoadingScreen();
+    /// @brief Creates a game world ready to be populated.
+    void CreateWorld();
+    /// @brief Sets up the game HUD/Menus.
+    void MakeGUI();
+public:
+    /// @brief Class constructor.
+    ForkYourFriendsApp();
+    /// @brief Class destructor.
+    ~ForkYourFriendsApp();
+
+    /// @brief Sets up the application to be ready for level loading.
+    void Initialize();
+    /// @brief Creates the simple level for ForkYourFriends.
+    void CreatePlayerlessScene();
+    /// @brief Does any final setup and starts the main loop.
+    /// @return The application return code intended to be the main return value.
+    int GetForkin();
+};//ForkYourFriendsApp
+
+#endif

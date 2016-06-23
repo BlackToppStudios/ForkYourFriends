@@ -38,21 +38,4 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#include "main.h"
-#include "forkyourfriendsapp.h"
-
-using namespace Mezzanine;
-
-int main(int ArgCount, char** ArgVars)
-{
-    // Temporary Hack
-    #ifdef MEZZ_MACOSX
-	String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(ArgCount,ArgVars);
-	Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
-    #endif
-
-    ForkYourFriendsApp ForkingApp;
-    ForkingApp.Initialize();
-    ForkingApp.CreatePlayerlessScene();
-    return ForkingApp.GetForkin();
-}
+#include "boilerplate.h"
